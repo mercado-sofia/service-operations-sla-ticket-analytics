@@ -10,7 +10,7 @@ from uuid import UUID
  
 import pandas as pd
 from sqlalchemy import Engine, MetaData, Table, text
-from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.dialects.postgresql import UUID, insert
  
 from src.config import API_FIELDS, Settings
  
@@ -110,25 +110,31 @@ def load_raw_service_requests(
     run_id: UUID,
 ) -> int:
     """Append the source values to the raw schema."""
- 
+
     if raw_dataframe.empty:
         return 0
- 
+
     dataframe = raw_dataframe.copy()
-    dataframe["run_id"] = str(run_id)
+
+    # Keep run_id as an actual UUID object.
+    dataframe["run_id"] = run_id
     dataframe["ingested_at"] = datetime.now()
+
     dataframe = dataframe.loc[:, list(RAW_COLUMNS)]
- 
+
     dataframe.to_sql(
         name="service_requests",
         con=engine,
         schema="raw",
         if_exists="append",
         index=False,
-        chunksize=5000,
-        method="multi",
+        chunksize=1000,
+        method=None,
+        dtype={
+            "run_id": UUID(as_uuid=True),
+        },
     )
- 
+
     return len(dataframe)
  
  
@@ -136,7 +142,7 @@ def upsert_analytics_tickets(
     engine: Engine,
     clean_dataframe: pd.DataFrame,
     run_id: UUID,
-    chunk_size: int = 5000,
+    chunk_size: int = 1000,
 ) -> int:
     """Insert new tickets and update existing tickets by ticket_id."""
  
@@ -144,7 +150,7 @@ def upsert_analytics_tickets(
         return 0
  
     dataframe = clean_dataframe.copy()
-    dataframe["source_run_id"] = str(run_id)
+    dataframe["source_run_id"] = run_id
     dataframe["updated_at"] = datetime.now()
  
     # Convert pandas missing values into Python None for psycopg.
