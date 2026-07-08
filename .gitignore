@@ -2,34 +2,24 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
-
-# Virtual environment
+ 
+# Virtual environments
 .venv/
 venv/
-
+ 
 # Secrets
 .env
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Local data
+ 
+# Raw data and logs
+# Keep the folder placeholder, but do not commit downloaded raw files.
 data/raw/*
-data/processed/*
 !data/raw/.gitkeep
-!data/processed/.gitkeep
-
-# Logs
-logs/*
-!logs/.gitkeep
 *.log
-
-# Operating system / IDE
+ 
+# OS and editor files
 .DS_Store
 Thumbs.db
 .vscode/
-
-# Temporary files
-*.tmp
-*.bak
+ 
+# Power BI temporary files
 *.pbitmp
