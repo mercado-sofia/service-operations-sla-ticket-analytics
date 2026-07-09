@@ -114,7 +114,7 @@ def assign_aging_bucket(
         return "8-14 days"
     if age_days <= 30:
         return "15-30 days"
-    return "31+ days"
+    return "Over 30 days"
  
  
 def _clean_text_columns(dataframe: pd.DataFrame) -> pd.DataFrame:
@@ -216,7 +216,7 @@ def transform_service_requests(
         errors="coerce",
     )
  
-    dataframe["is_closed"] = dataframe["closed_at"].notna()
+    dataframe["is_closed"] = dataframe["normalized_status"].eq("CLOSED")
     dataframe["is_open"] = ~dataframe["is_closed"]
  
     dataframe["resolution_hours"] = (
