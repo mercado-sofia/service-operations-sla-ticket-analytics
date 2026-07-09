@@ -81,38 +81,6 @@ The transformation process checks for:
 - Missing due dates
 - Unknown ticket statuses
 
-## Power BI Dashboard
-
-The dashboard contains three pages:
-
-### Operations Overview
-
-- Total, open, and closed ticket cards
-- Daily ticket flow
-- Top agencies by ticket volume
-
-![Operations Overview](docs/screenshots/operations_overview.png)
-
-### SLA & Resolution Performance
-
-- SLA met and breached tickets
-- SLA compliance rate
-- SLA-status distribution
-- Agencies with the highest average resolution time
-
-![SLA Performance](docs/screenshots/sla_performance.png)
-
-### Backlog Analysis
-
-- Current open backlog
-- Average open-ticket age
-- Open overdue tickets
-- Backlog aging distribution
-- Agencies with the largest open backlog
-
-![Backlog Analysis](docs/screenshots/backlog_analysis.png)
-
-
 ## Data Source
 
 NYC Open Data — **311 Service Requests from 2020 to Present**
