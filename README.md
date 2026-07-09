@@ -15,19 +15,6 @@ This project treats NYC 311 service requests as support tickets and analyzes:
 - Open-ticket aging
 - Agency-level operational performance
 
-## Architecture
-
-```text
-NYC 311 API
-    → Python extraction
-    → Raw JSONL snapshot
-    → PostgreSQL raw table
-    → Pandas transformation and quality checks
-    → PostgreSQL analytics table
-    → SQL reporting views
-    → Power BI dashboard
-```
-
 ## Tech Stack
 
 - Python
