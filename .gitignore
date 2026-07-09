@@ -1,23 +1,29 @@
-# Python
+# Python cache and test files
 __pycache__/
 *.py[cod]
 .pytest_cache/
- 
+.coverage
+htmlcov/
+
 # Virtual environments
 .venv/
 venv/
- 
+
 # Secrets
 .env
- 
-# Raw data and logs
+
+# Generated raw data
 data/raw/*
+!data/raw/.gitkeep
+
+# Logs and crash files
 *.log
- 
+*.stackdump
+
 # OS and editor files
 .DS_Store
 Thumbs.db
 .vscode/
- 
+
 # Power BI temporary files
 *.pbitmp
