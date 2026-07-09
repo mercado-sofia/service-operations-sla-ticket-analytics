@@ -11,9 +11,7 @@ venv/
 .env
  
 # Raw data and logs
-# Keep the folder placeholder, but do not commit downloaded raw files.
 data/raw/*
-!data/raw/.gitkeep
 *.log
  
 # OS and editor files
